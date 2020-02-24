@@ -34,7 +34,7 @@ class Mail{
         // Do not generate invoice if attachments are missing.
         if(err){
     			return console.log(`Error compiling email: ${err}`);
-    		} else if(!encodedAttachments.length){
+    		} else if(encodedAttachments.length < 2){
           return console.log(`Will not generate invoice: Attachments missing for ${self.company}`);
         }
 
