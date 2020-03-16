@@ -92,9 +92,9 @@ class Mail{
   		}
   	}, (err, result) => {
       if(err){
-        return console.log(`Error creating draft: ${err}`);
+        return console.log(`Error creating draft for ${this.company}: ${err}`);
       } else {
-        console.log(`Draft created successfully for: ${this.company}`);
+        console.log(`Draft created successfully for ${this.company}`);
       }
     });
   }
