@@ -8,8 +8,8 @@ class Attachments {
     this.id = id;
   }
 
- // Encodes attachments.
- encodedList(callback){
+  // Encodes attachments.
+  encodedList(callback){
     this.getInvoices(function(err, invoices){
       if(err){
         return console.log(err);
