@@ -85,7 +85,9 @@ function sendMailers(auth){
   let contacts = new Contacts();
   contacts.getContacts(function(formattedContacts){
     for(let i = 0; i < formattedContacts.length; i++){
-    	new Mail(auth, formattedContacts[i]).createMail();
+      setTimeout(function() {
+        new Mail(auth, formattedContacts[i]).createMail();
+      }, (i * 250));
     }
   });
 }
