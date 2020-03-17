@@ -33,7 +33,8 @@ class Attachments {
       callback(
         err,
         files.filter(function(file){
-          return file.includes(employerId);
+          let id = file.split('_')[0];
+          return id === employerId;
         })
       );
     });
