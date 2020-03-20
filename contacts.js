@@ -20,7 +20,7 @@ const schema = {
     type: String
   },
   'Client Engagement Manager': {
-    prop: 'engagementManager',
+    prop: 'engagementManagers',
     type: String
   },
   'Invoice Type': {
@@ -39,12 +39,7 @@ class Contacts{
 
       let contacts = []
       for(let i = 0; i < data.rows.length; i++){
-        contacts.push(new Contact(
-          data.rows[i].employerGroupId,
-          data.rows[i].emailAddresses.split('; ').join(','),
-          data.rows[i].invoiceType,
-          data.rows[i].companyName
-        ))
+        contacts.push(new Contact(data.rows[i]))
       }
       callback(contacts);
     });
@@ -54,9 +49,11 @@ class Contacts{
 
 class Contact{
 
-  constructor(employerGroupId, emailAddresses, invoiceType, companyName){
+  constructor(contact){
+    const { employerGroupId, emailAddresses, engagementManagers, invoiceType, companyName } = contact;
     this.employerGroupId = employerGroupId;
-    this.emailAddresses = emailAddresses;
+    this.emailAddresses = emailAddresses.split('; ').join(',');
+    this.engagementManagers = engagementManagers.split('; ').join(',');
     this.invoiceType = invoiceType;
     this.companyName = companyName;
   }
