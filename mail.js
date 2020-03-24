@@ -6,11 +6,12 @@ const fs = require('fs');
 class Mail{
 
   constructor(auth, contact){
-    const { emailAddresses, employerGroupId, companyName } = contact;
+    const { emailAddresses, engagementManagers, employerGroupId, companyName } = contact;
     this.gmail = google.gmail({version: 'v1', auth});
     this.auth = auth;
     this.from = 'gretchen.ziegler@sapphire-digital.com';
     this.to = emailAddresses;
+    this.cc = engagementManagers;
     this.employerGroupId = employerGroupId;
     this.company = companyName;
     this.task = 'draft';
@@ -58,6 +59,7 @@ class Mail{
   composeMail(self, attachments){
     return new mailComposer({
       to: self.to,
+      cc: self.cc,
       html: self.body,
       subject: self.subject,
       textEncoding: 'base64',
